@@ -5,9 +5,9 @@ from random import randint, choice
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        image_1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
-        image_2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
-        self.walk = [image_1, image_2]
+        walk_1 = pygame.image.load("graphics/player/player_walk_1.png").convert_alpha()
+        walk_2 = pygame.image.load("graphics/player/player_walk_2.png").convert_alpha()
+        self.walk = [walk_1, walk_2]
         self.index = 0
         self.jump = pygame.image.load("graphics/player/jump.png").convert_alpha()
 
@@ -32,12 +32,12 @@ class Player(pygame.sprite.Sprite):
     def animation(self):
         if self.rect.bottom < 300:
             # Jump
-            self.surf = self.jump
+            self.image = self.jump
         else:
             # walk
             self.index += 0.1
-            if self.index >= len(self.walk): self.index = 0
-            self.surf = self.walk[int(self.index)]
+            if (self.index >= len(self.walk)): self.index = 0
+            self.image = self.walk[int(self.index)]
 
     def update(self):
         self.player_input()
